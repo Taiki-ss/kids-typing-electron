@@ -1,13 +1,14 @@
-import React, { ReactNode } from 'react'
+import React, {ReactNode} from 'react'
+import Image from "../img/test.jpeg";
 
 type Props={
 	text:string,
 }
 
-const Question=({text }:Props) => (
+const Question=({text}: Props) => (
 	<>
 		{text}
-		<img src="img/test.jpeg" alt="" />
+		<img src={Image.src} alt="" width="100%" />
 	</>
 )
 
