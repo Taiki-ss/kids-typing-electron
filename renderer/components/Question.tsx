@@ -1,5 +1,6 @@
 import React, {ReactNode} from 'react'
-import Image from "../img/test.jpeg";
+import Image from 'next/image'
+import testImage from "../img/test.jpeg";
 
 type Props={
 	text:string,
@@ -8,7 +9,7 @@ type Props={
 const Question=({text}: Props) => (
 	<>
 		{text}
-		<img src={Image.src} alt="" width="100%" />
+		<Image src={testImage} />
 	</>
 )
 
