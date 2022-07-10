@@ -5,7 +5,7 @@ import Question from '../components/Question'
 const GamePage = () => (
   <Layout title="げーむ">
 	<h1>げーむ</h1>
-	<Question text="しんうるとらまん"></Question>
+	<Question></Question>
   </Layout>
 )
 

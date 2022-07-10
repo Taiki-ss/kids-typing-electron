@@ -12,19 +12,38 @@ const QuestionWapp=styled.div`
 	background-color: lightgray;
 `;
 
-const H2=styled.h2`
-	font-size: 24px;
+const QuestionTitle=styled.h2`
+	font-size: 60px;
 	font-weight: bold;
 	text-align: center;
 	color: red;
 `;
 
-const Question=({text}: Props) => (
+const TypingText=styled.p`
+	text-align: center;
+	font-size: 60px;
+	font-weight: bold;
+	background-color: gray;
+`
+
+const ImgWrapp=styled.div`
+	width: 60%;
+	margin:0 auto;
+`;
+
+const question_data=[
+	{"しんうるとらまん": "sinnurutoraman"},
+]
+
+const Question=() => (
 
 	<>
 		<QuestionWapp>
-			<H2>{ text }</H2>
-			<Image src={testImage} />
+			<ImgWrapp>
+				<Image src={testImage} />
+			</ImgWrapp>
+			<QuestionTitle>{Object.keys(question_data[0])}</QuestionTitle>
+			<TypingText>{Object.values(question_data[0])}</TypingText>
 		</QuestionWapp>
 	</>
 )

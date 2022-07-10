@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react'
+import React, {ReactNode} from 'react'
+import styled from 'styled-components'
 import Link from 'next/link'
 import Head from 'next/head'
 
@@ -7,8 +8,12 @@ type Props = {
   title?: string
 }
 
+const MainContainer=styled.div`
+	height: 100%;
+`;
+
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div>
+  <MainContainer>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -31,7 +36,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <hr />
       <span>footer</span>
     </footer>
-  </div>
+  </MainContainer>
 )
 
 export default Layout
