@@ -31,9 +31,20 @@ const ImgWrapp=styled.div`
 	margin:0 auto;
 `;
 
-const question_data=[
-	{"しんうるとらまん": "sinnurutoraman"},
-]
+const question_data={
+	"しんうるとらまん": "sinnurutoraman",
+	"ぜっとん": "zettonn",
+}
+
+const question=(() => {
+	const length=Object.keys(question_data).length;
+	const randomNum=Math.floor(Math.random()*length)
+	return {
+		title: Object.keys(question_data)[randomNum],
+		text: Object.values(question_data)[randomNum],
+
+	}
+})()
 
 const Question=() => (
 
@@ -42,8 +53,8 @@ const Question=() => (
 			<ImgWrapp>
 				<Image src={testImage} />
 			</ImgWrapp>
-			<QuestionTitle>{Object.keys(question_data[0])}</QuestionTitle>
-			<TypingText>{Object.values(question_data[0])}</TypingText>
+			<QuestionTitle>{question.title}</QuestionTitle>
+			<TypingText>{question.text}</TypingText>
 		</QuestionWapp>
 	</>
 )
