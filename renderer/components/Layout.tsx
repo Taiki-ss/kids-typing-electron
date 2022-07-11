@@ -1,18 +1,18 @@
-import React, {ReactNode} from 'react'
-import styled from 'styled-components'
-import Link from 'next/link'
-import Head from 'next/head'
+import React, { ReactNode } from "react";
+import styled from "styled-components";
+import Link from "next/link";
+import Head from "next/head";
 
 type Props = {
-  children: ReactNode
-  title?: string
-}
+  children: ReactNode;
+  title?: string;
+};
 
-const MainContainer=styled.div`
-	height: 100%;
+const MainContainer = styled.div`
+  height: 100%;
 `;
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
+const Layout = ({ children, title = "This is the default title" }: Props) => (
   <MainContainer>
     <Head>
       <title>{title}</title>
@@ -23,12 +23,12 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <nav>
         <Link href="/">
           <a>はじめのぺーじ</a>
-        </Link>{' '}
-        |{' '}
+        </Link>{" "}
+        |{" "}
         <Link href="/game">
           <a>げーむをはじめる</a>
-        </Link>{' '}
-        |{' '}
+        </Link>{" "}
+        |{" "}
       </nav>
     </header>
     {children}
@@ -37,6 +37,6 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <span>footer</span>
     </footer>
   </MainContainer>
-)
+);
 
-export default Layout
+export default Layout;

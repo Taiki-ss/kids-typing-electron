@@ -1,12 +1,12 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
-import Question from '../components/Question'
+// import Link from "next/link";
+import Layout from "../components/Layout";
+import Question from "../components/Question";
 
 const GamePage = () => (
   <Layout title="げーむ">
-	<h1>げーむ</h1>
-	<Question></Question>
+    <h1>げーむ</h1>
+    <Question></Question>
   </Layout>
-)
+);
 
-export default GamePage
+export default GamePage;
