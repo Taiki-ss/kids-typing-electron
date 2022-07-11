@@ -4,3 +4,4 @@ main
 dist
 renderer/.next
 renderer/out
+.vscode
