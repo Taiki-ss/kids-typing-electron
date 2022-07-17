@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Image from "next/image";
 import testImage from "../img/test.jpeg";
 
-
 const QuestionWapp = styled.div`
   padding: 16px;
   background-color: lightgray;
@@ -41,6 +40,13 @@ const question = (() => {
   };
 })();
 
+const cutOff = (str: string) => {
+  return str
+    .split("")
+    .map((s: string) => `<span>${s}</span>`)
+    .join("");
+};
+
 const Question = () => (
   <>
     <QuestionWapp>
@@ -48,7 +54,9 @@ const Question = () => (
         <Image src={testImage} />
       </ImgWrapp>
       <QuestionTitle>{question.title}</QuestionTitle>
-      <TypingText>{question.text}</TypingText>
+      <TypingText
+        dangerouslySetInnerHTML={{ __html: cutOff(question.text) }}
+      ></TypingText>
     </QuestionWapp>
   </>
 );
