@@ -1,11 +1,7 @@
-import React, { ReactNode } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import testImage from "../img/test.jpeg";
 
-type Props = {
-  text: string;
-};
 
 const QuestionWapp = styled.div`
   padding: 16px;
