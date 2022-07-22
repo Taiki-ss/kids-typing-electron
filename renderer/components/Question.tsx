@@ -28,30 +28,50 @@ const ImgWrapp = styled.div`
 `;
 
 const questionData = {
-  しんうるとらまん: "sinnurutoraman",
+  しんうるとらまん: "sinnurutoramann",
   ぜっとん: "zettonn",
+  がぼら: "gabora",
+  うるとらまんぜっと: "urutoramannzetto",
+  しんごじら: "sinngozira",
+  れっどきんぐ: "reddokinngu",
+  とりがー: "toriga-",
+  きょうりゅう: "kyouryuu",
+  どんぶらざーず: "donnburaza-zu",
+  ごもら: "gomora",
+  せぶんがー: "sebunnga-",
+  ざらぶ: "zarabu",
+  めふぃらす: "mefirasu",
 };
 
-const question = (() => {
+const definQuestion = () => {
   const length = Object.keys(questionData).length;
   const randomNum = Math.floor(Math.random() * length);
   return {
     title: Object.keys(questionData)[randomNum],
     text: Object.values(questionData)[randomNum],
   };
-})();
+};
 
 const Question = () => {
-  const [text, setText] = useState(question.text);
+  const [question, setQuestion] = useState(definQuestion());
   const [position, setPosition] = useState(0);
+  const textLength = question.text.length;
 
   const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const textSpans = document.getElementById("textbox").children;
-    if (e.key === text[position]) {
+    if (e.key === question.text[position]) {
       textSpans[position].classList.add("typed-letters");
       textSpans[position].classList.add("current-letter");
       setPosition(position + 1);
-      console.log(text[position]);
+      console.log(question.text[position]);
+      if (textLength === position + 1) {
+        setPosition(0);
+        setQuestion(definQuestion());
+        const typed = document.querySelectorAll(".typed-letters");
+        typed.forEach((el) => {
+          el.classList.remove("typed-letters");
+        });
+      }
     }
   };
 
@@ -71,8 +91,8 @@ const Question = () => {
           <QuestionTitle>{question.title}</QuestionTitle>
           <TypingText>
             <div id="textbox">
-              <span className="current-letter">{text[0]}</span>
-              {text
+              <span className="current-letter">{question.text[0]}</span>
+              {question.text
                 .split("")
                 .slice(1)
                 .map((char) => (
