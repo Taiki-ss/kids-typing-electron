@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import testImage from "../img/test.jpeg";
@@ -40,25 +41,49 @@ const question = (() => {
   };
 })();
 
-const cutOff = (str: string) => {
-  return str
-    .split("")
-    .map((s: string) => `<span>${s}</span>`)
-    .join("");
-};
+const Question = () => {
+  const [text, setText] = useState(question.text);
+  const [position, setPosition] = useState(0);
 
-const Question = () => (
-  <>
-    <QuestionWapp>
-      <ImgWrapp>
-        <Image src={testImage} />
-      </ImgWrapp>
-      <QuestionTitle>{question.title}</QuestionTitle>
-      <TypingText
-        dangerouslySetInnerHTML={{ __html: cutOff(question.text) }}
-      ></TypingText>
-    </QuestionWapp>
-  </>
-);
+  const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const textSpans = document.getElementById("textbox").children;
+    if (e.key === text[position]) {
+      textSpans[position].classList.add("typed-letters");
+      textSpans[position].classList.add("current-letter");
+      setPosition(position + 1);
+      console.log(text[position]);
+    }
+  };
+
+  return (
+    <>
+      <style jsx>{`
+        .typed-letters {
+          color: blue;
+        }
+      `}</style>
+
+      <div onKeyPress={(e) => handleKey(e)} tabIndex={0}>
+        <QuestionWapp>
+          <ImgWrapp>
+            <Image src={testImage} />
+          </ImgWrapp>
+          <QuestionTitle>{question.title}</QuestionTitle>
+          <TypingText>
+            <div id="textbox">
+              <span className="current-letter">{text[0]}</span>
+              {text
+                .split("")
+                .slice(1)
+                .map((char) => (
+                  <span className="waiting-letters">{char}</span>
+                ))}
+            </div>
+          </TypingText>
+        </QuestionWapp>
+      </div>
+    </>
+  );
+};
 
 export default Question;
