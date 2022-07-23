@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import testImage from "../img/test.jpeg";
+// import testImage from "../img/test.jpeg";
 
 const QuestionWapp = styled.div`
   padding: 16px;
@@ -29,7 +29,6 @@ const ImgWrapp = styled.div`
 
 const questionData = {
   しんうるとらまん: "sinnurutoramann",
-  ぜっとん: "zettonn",
   がぼら: "gabora",
   うるとらまんぜっと: "urutoramannzetto",
   しんごじら: "sinngozira",
@@ -74,6 +73,7 @@ const Question = () => {
       }
     }
   };
+  const imgPath = require(`../img/${question.text}.jpg`);
 
   return (
     <>
@@ -86,7 +86,7 @@ const Question = () => {
       <div onKeyPress={(e) => handleKey(e)} tabIndex={0}>
         <QuestionWapp>
           <ImgWrapp>
-            <Image src={testImage} />
+            <Image src={imgPath} />
           </ImgWrapp>
           <QuestionTitle>{question.title}</QuestionTitle>
           <TypingText>
