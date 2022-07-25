@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import Image from "next/image";
-// import testImage from "../img/test.jpeg";
+import Image from "next/image";
 
 const QuestionWapp = styled.div`
   padding: 16px;
@@ -73,7 +72,7 @@ const Question = () => {
       }
     }
   };
-  //   const imgPath = require(`file:///Users/taiki/Dev/img/${question.text}.jpg`);
+    const imgPath = require(`../img/${question.text}.jpg`);
 
   return (
     <>
@@ -86,17 +85,17 @@ const Question = () => {
       <div onKeyPress={(e) => handleKey(e)} tabIndex={0}>
         <QuestionWapp>
           <ImgWrapp>
-            {/* <Image src={imgPath} /> */}
-            <img
+            <Image src={imgPath} />
+            {/* <img
               src={`file:///Users/taiki/typing-img/${question.text}.jpg`}
               alt=""
-            />
+            /> */}
           </ImgWrapp>
           <QuestionTitle>{question.title}</QuestionTitle>
           <TypingText>
             <div id="textbox">
-              <span className="current-letter">{question.text[0]}</span>
-              {question.text
+              <span className="current-letter">{question.text[0].toUpperCase()}</span>
+              {question.text.toUpperCase()
                 .split("")
                 .slice(1)
                 .map((char) => (
