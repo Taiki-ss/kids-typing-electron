@@ -4,26 +4,37 @@ import Image from "next/image";
 
 const QuestionWapp = styled.div`
   padding: 16px;
-  background-color: lightgray;
 `;
 
-const QuestionTitle = styled.h2`
-  font-size: 60px;
+const QuestionTitle = styled.h2.attrs((props) => ({
+  type: "text",
+  size: props.size || "60px",
+}))`
+  font-size: ${(props) => props.size};
   font-weight: bold;
   text-align: center;
-  color: red;
+  color: #fff;
 `;
 
 const TypingText = styled.p`
   text-align: center;
   font-size: 60px;
   font-weight: bold;
-  background-color: gray;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border-radius: 48px;
 `;
 
 const ImgWrapp = styled.div`
-  width: 60%;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: 400px;
   margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  img {
+    object-fit: contain;
+  }
 `;
 
 const questionData = {
@@ -61,24 +72,25 @@ const Question = () => {
       textSpans[position].classList.add("typed-letters");
       textSpans[position].classList.add("current-letter");
       setPosition(position + 1);
-      console.log(question.text[position]);
       if (textLength === position + 1) {
-        setPosition(0);
-        setQuestion(definQuestion());
-        const typed = document.querySelectorAll(".typed-letters");
-        typed.forEach((el) => {
-          el.classList.remove("typed-letters");
-        });
+        setTimeout(() => {
+          setPosition(0);
+          setQuestion(definQuestion());
+          const typed = document.querySelectorAll(".typed-letters");
+          typed.forEach((el) => {
+            el.classList.remove("typed-letters");
+          });
+        }, 1000);
       }
     }
   };
-    const imgPath = require(`../img/${question.text}.jpg`);
+  const imgPath = require(`../img/${question.text}.jpg`);
 
   return (
     <>
       <style jsx>{`
         .typed-letters {
-          color: blue;
+          color: #8a2be2;
         }
       `}</style>
 
@@ -94,8 +106,11 @@ const Question = () => {
           <QuestionTitle>{question.title}</QuestionTitle>
           <TypingText>
             <div id="textbox">
-              <span className="current-letter">{question.text[0].toUpperCase()}</span>
-              {question.text.toUpperCase()
+              <span className="current-letter">
+                {question.text[0].toUpperCase()}
+              </span>
+              {question.text
+                .toUpperCase()
                 .split("")
                 .slice(1)
                 .map((char) => (

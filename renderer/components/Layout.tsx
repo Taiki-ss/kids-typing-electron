@@ -9,7 +9,9 @@ type Props = {
 };
 
 const MainContainer = styled.div`
+  min-height: 100vh;
   height: 100%;
+  background-color: #20b2aa;
 `;
 
 const Layout = ({ children, title = "This is the default title" }: Props) => (
