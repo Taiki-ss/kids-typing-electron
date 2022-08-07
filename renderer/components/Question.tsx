@@ -6,14 +6,26 @@ const QuestionWapp = styled.div`
   padding: 16px;
 `;
 
-const QuestionTitle = styled.h2.attrs((props) => ({
-  type: "text",
-  size: props.size || "60px",
-}))`
-  font-size: ${(props) => props.size};
+const QuestionTitle = styled.h2`
+  margin: 0 auto;
+  position: relative;
+  font-size: ${(props) => (props.large ? "80px" : "60px")};
+  color: ${(props) => (props.large ? "#fff" : "#fff")};
   font-weight: bold;
   text-align: center;
-  color: #fff;
+  transition: all 0.3s;
+  &::after {
+    display: ${(props) => (props.large ? "block" : "none")};
+    content: "くりあー！";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 1;
+    font-size: 40px;
+    color: red;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s;
+  }
 `;
 
 const TypingText = styled.p`
@@ -103,7 +115,9 @@ const Question = () => {
               alt=""
             /> */}
           </ImgWrapp>
-          <QuestionTitle>{question.title}</QuestionTitle>
+          <QuestionTitle large={textLength === position}>
+            {question.title}
+          </QuestionTitle>
           <TypingText>
             <div id="textbox">
               <span className="current-letter">
