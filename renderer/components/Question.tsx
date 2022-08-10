@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import Image from "next/image";
+import Image from "next/image";
 
+// styled-components --------------------------------------------------
 const QuestionWapp = styled.div`
   padding: 16px;
 `;
@@ -49,6 +50,9 @@ const ImgWrapp = styled.div`
   }
 `;
 
+// ---------------------------------------------------------------------
+
+// ランダムで表示する問題（後で別ファイルで管理予定）
 const questionData = {
   だいな: "daina",
   だいおういか: "daiouika",
@@ -92,6 +96,7 @@ const questionData = {
   めふぃらす: "mefirasu",
 };
 
+// レンダリング時にランダムで問題生成
 const definQuestion = () => {
   const length = Object.keys(questionData).length;
   const randomNum = Math.floor(Math.random() * length);
@@ -101,17 +106,23 @@ const definQuestion = () => {
   };
 };
 
+// Questionコンポーネント本体
 const Question = () => {
   const [question, setQuestion] = useState(definQuestion());
   const [position, setPosition] = useState(0);
   const textLength = question.text.length;
+  const imgPath = require(`../img/${question.text}.jpg`);
 
   const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const textSpans = document.getElementById("textbox").children;
+
+    // 正解のキー押下
     if (e.key === question.text[position]) {
       textSpans[position].classList.add("typed-letters");
       textSpans[position].classList.add("current-letter");
       setPosition(position + 1);
+
+      // 最後のキー押下
       if (textLength === position + 1) {
         setTimeout(() => {
           setPosition(0);
@@ -124,25 +135,28 @@ const Question = () => {
       }
     }
   };
-//   const imgPath = require(`../img/${question.text}.jpg`);
 
   return (
     <>
+      {/* 入力成功したキーのカラー変更用 */}
       <style jsx>{`
         .typed-letters {
           color: #8a2be2;
         }
       `}</style>
 
+      {/* キー押下イベント発火 */}
       <div onKeyPress={(e) => handleKey(e)} tabIndex={0}>
         <QuestionWapp>
           <ImgWrapp>
-            {/* <Image src={imgPath} /> */}
-            <img
+            <Image src={imgPath} />
+            {/* パッケージングの際にimgタグを使う */}
+            {/* <img
               src={`file:///home/zorinos/typing-img/${question.text}.jpg`}
               alt=""
-            />
+            /> */}
           </ImgWrapp>
+          {/* propsのlergeを判定styled-componentに渡してる */}
           <QuestionTitle large={textLength === position}>
             {question.title}
           </QuestionTitle>
