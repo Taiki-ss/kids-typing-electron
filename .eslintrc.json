@@ -7,10 +7,30 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
-    "project": "./tsconfig.json",
+    "project": "../tsconfig.json",
     "ecmaFeatures": {
       "jsx": true
     }
   },
-  "extends": ["eslint:recommended", "next/core-web-vitals"]
+  "extends": [
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "airbnb",
+    "airbnb-typescript"
+  ],
+  "plugins": ["@typescript-eslint", "react"],
+  "rules": {
+    "linebreak-style": ["error", "windows"],
+    "react/react-in-jsx-scope": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "react/prop-types": "off"
+  }
 }
