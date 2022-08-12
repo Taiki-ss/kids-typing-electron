@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Image from "next/image";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Image from 'next/image';
 
 // styled-components --------------------------------------------------
 const QuestionWapp = styled.div`
@@ -10,14 +10,14 @@ const QuestionWapp = styled.div`
 const QuestionTitle = styled.h2`
   margin: 0 auto;
   position: relative;
-  font-size: ${(props) => (props.large ? "80px" : "60px")};
-  color: ${(props) => (props.large ? "#fff" : "#fff")};
+  font-size: ${(props) => (props.large ? '80px' : '60px')};
+  color: ${(props) => (props.large ? '#fff' : '#fff')};
   font-weight: bold;
   text-align: center;
   transition: all 0.3s;
   &::after {
-    display: ${(props) => (props.large ? "block" : "none")};
-    content: "くりあー！";
+    display: ${(props) => (props.large ? 'block' : 'none')};
+    content: 'くりあー！';
     position: absolute;
     top: 0;
     left: 50%;
@@ -54,46 +54,46 @@ const ImgWrapp = styled.div`
 
 // ランダムで表示する問題（後で別ファイルで管理予定）
 const questionData = {
-  だいな: "daina",
-  だいおういか: "daiouika",
-  でっかー: "dekka-",
-  ぐどん: "gudonn",
-  ひらめ: "hirame",
-  ひょうもんだこ: "hyoumonndako",
-  いくら: "ikura",
-  かまたくん: "kamatakunn",
-  かのこいせえび: "kanokoiseebi",
-  かれい: "karei",
-  けんせい: "kennsei",
-  こんぐ: "konngu",
-  めかごもら: "mekagomora",
-  むかんでんだー: "mukadennda-",
-  おにだるまおこぜ: "onidarumaokoze",
-  おじさん: "ozisann",
-  せみえび: "semiebi",
-  すべすべまんじゅうがに: "subesubemannjuugani",
-  たいが: "taiga",
-  てんぺらーせいじん: "tennpera-seizinn",
-  てぃが: "thiga",
-  ちびすけ: "tibisuke",
-  ちんあなご: "tinnanago",
-  とらいすくわっと: "toraisukuwatto",
-  ついんてーる: "tuinnte-ru",
-  うちわえび: "utiwaebi",
-  ゆうり: "yuuri",
-  ぞうりえび: "zouriebi",
-  しんうるとらまん: "sinnurutoramann",
-  がぼら: "gabora",
-  うるとらまんぜっと: "urutoramannzetto",
-  しんごじら: "sinngozira",
-  れっどきんぐ: "reddokinngu",
-  とりがー: "toriga-",
-  きょうりゅう: "kyouryuu",
-  どんぶらざーず: "donnburaza-zu",
-  ごもら: "gomora",
-  せぶんがー: "sebunnga-",
-  ざらぶ: "zarabu",
-  めふぃらす: "mefirasu",
+  だいな: 'daina',
+  だいおういか: 'daiouika',
+  でっかー: 'dekka-',
+  ぐどん: 'gudonn',
+  ひらめ: 'hirame',
+  ひょうもんだこ: 'hyoumonndako',
+  いくら: 'ikura',
+  かまたくん: 'kamatakunn',
+  かのこいせえび: 'kanokoiseebi',
+  かれい: 'karei',
+  けんせい: 'kennsei',
+  こんぐ: 'konngu',
+  めかごもら: 'mekagomora',
+  むかんでんだー: 'mukadennda-',
+  おにだるまおこぜ: 'onidarumaokoze',
+  おじさん: 'ozisann',
+  せみえび: 'semiebi',
+  すべすべまんじゅうがに: 'subesubemannjuugani',
+  たいが: 'taiga',
+  てんぺらーせいじん: 'tennpera-seizinn',
+  てぃが: 'thiga',
+  ちびすけ: 'tibisuke',
+  ちんあなご: 'tinnanago',
+  とらいすくわっと: 'toraisukuwatto',
+  ついんてーる: 'tuinnte-ru',
+  うちわえび: 'utiwaebi',
+  ゆうり: 'yuuri',
+  ぞうりえび: 'zouriebi',
+  しんうるとらまん: 'sinnurutoramann',
+  がぼら: 'gabora',
+  うるとらまんぜっと: 'urutoramannzetto',
+  しんごじら: 'sinngozira',
+  れっどきんぐ: 'reddokinngu',
+  とりがー: 'toriga-',
+  きょうりゅう: 'kyouryuu',
+  どんぶらざーず: 'donnburaza-zu',
+  ごもら: 'gomora',
+  せぶんがー: 'sebunnga-',
+  ざらぶ: 'zarabu',
+  めふぃらす: 'mefirasu',
 };
 
 // レンダリング時にランダムで問題生成
@@ -113,13 +113,16 @@ const Question = () => {
   const textLength = question.text.length;
   const imgPath = require(`../img/${question.text}.jpg`);
 
-  const handleKey = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    const textSpans = document.getElementById("textbox").children;
+  const handleKey = (
+    e: React.KeyboardEvent<HTMLDivElement>
+  ) => {
+    const textSpans =
+      document.getElementById('textbox').children;
 
     // 正解のキー押下
     if (e.key === question.text[position]) {
-      textSpans[position].classList.add("typed-letters");
-      textSpans[position].classList.add("current-letter");
+      textSpans[position].classList.add('typed-letters');
+      textSpans[position].classList.add('current-letter');
       setPosition(position + 1);
 
       // 最後のキー押下
@@ -127,9 +130,11 @@ const Question = () => {
         setTimeout(() => {
           setPosition(0);
           setQuestion(definQuestion());
-          const typed = document.querySelectorAll(".typed-letters");
+          const typed = document.querySelectorAll(
+            '.typed-letters'
+          );
           typed.forEach((el) => {
-            el.classList.remove("typed-letters");
+            el.classList.remove('typed-letters');
           });
         }, 1000);
       }
@@ -167,10 +172,12 @@ const Question = () => {
               </span>
               {question.text
                 .toUpperCase()
-                .split("")
+                .split('')
                 .slice(1)
                 .map((char) => (
-                  <span className="waiting-letters">{char}</span>
+                  <span className="waiting-letters">
+                    {char}
+                  </span>
                 ))}
             </div>
           </TypingText>
