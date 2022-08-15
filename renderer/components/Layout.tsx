@@ -25,12 +25,12 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
       <nav>
         <Link href="/">
           <a>はじめのぺーじ</a>
-        </Link>{" "}
-        |{" "}
+        </Link>
+        |
         <Link href="/game">
           <a>げーむをはじめる</a>
-        </Link>{" "}
-        |{" "}
+        </Link>
+        |
       </nav>
     </header>
     {children}
