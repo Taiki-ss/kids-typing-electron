@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import QuestionData from '../store/QuestionData';
 import styled from 'styled-components';
 import Image from 'next/image';
 
@@ -52,84 +53,12 @@ const Component = styled.div`
 
 // ---------------------------------------------------------------------
 
-// ランダムで表示する問題（後で別ファイルで管理予定）
-const questionData = {
-  だいな: 'daina',
-  だいおういか: 'daiouika',
-  でっかー: 'dekka-',
-  ぐどん: 'gudonn',
-  ひらめ: 'hirame',
-  ひょうもんだこ: 'hyoumonndako',
-  いくら: 'ikura',
-  かまたくん: 'kamatakunn',
-  かのこいせえび: 'kanokoiseebi',
-  かれい: 'karei',
-  けんせい: 'kennsei',
-  こんぐ: 'konngu',
-  めかごもら: 'mekagomora',
-  むかんでんだー: 'mukadennda-',
-  おにだるまおこぜ: 'onidarumaokoze',
-  おじさん: 'ozisann',
-  せみえび: 'semiebi',
-  すべすべまんじゅうがに: 'subesubemannjuugani',
-  たいが: 'taiga',
-  てんぺらーせいじん: 'tennpera-seizinn',
-  てぃが: 'thiga',
-  ちびすけ: 'tibisuke',
-  ちんあなご: 'tinnanago',
-  とらいすくわっと: 'toraisukuwatto',
-  ついんてーる: 'tuinnte-ru',
-  うちわえび: 'utiwaebi',
-  ゆうり: 'yuuri',
-  ぞうりえび: 'zouriebi',
-  しんうるとらまん: 'sinnurutoramann',
-  がぼら: 'gabora',
-  うるとらまんぜっと: 'urutoramannzetto',
-  しんごじら: 'sinngozira',
-  れっどきんぐ: 'reddokinngu',
-  とりがー: 'toriga-',
-  きょうりゅう: 'kyouryuu',
-  どんぶらざーず: 'donnburaza-zu',
-  ごもら: 'gomora',
-  せぶんがー: 'sebunnga-',
-  ざらぶ: 'zarabu',
-  めふぃらす: 'mefirasu',
-  ちー: 'ti-',
-  こっち: 'kotti',
-  ねてるけんせい: 'neterukennsei',
-  かわいいゆうり: 'kawaiiyuuri',
-  くれないがい: 'kurenaigai',
-  じゃぐらすじゃぐらー: 'jagurasujagura-',
-  げねがーぐ: 'genega-gu',
-  すふぃあざうるす: 'sufiazaurusu',
-  のーば: 'no-ba',
-  まぐろぱずる: 'maguropazuru',
-  かにぱずる: 'kanipazuru',
-  がりがりくん: 'garigarikunn',
-  はいぱーぜっとんですさいず: 'haipa-zettonndesusaizu',
-  きめらべろす: 'kimeraberosu',
-  おーぶ: 'o-bu',
-  ひかきん: 'hikakinn',
-  らんぼるぎーに: 'rannborugi-ni',
-  ふぇらーり: 'fera-ri', 
-};
-
-// レンダリング時にランダムで問題生成
-const definQuestion = () => {
-  const length = Object.keys(questionData).length;
-  const randomNum = Math.floor(Math.random() * length);
-  return {
-    title: Object.keys(questionData)[randomNum],
-    text: Object.values(questionData)[randomNum],
-  };
-};
-
 // Questionコンポーネント本体
 const Question = () => {
-  const [question, setQuestion] = useState(definQuestion());
+  const [question, setQuestion] = useState(QuestionData);
   const [position, setPosition] = useState(0);
-  const textLength = question.text.length;
-  const imgPath = require(`../img/${question.text}.jpg`);
+  const textLength = question.en.length;
+  const imgPath = require(`../img/${question.en}.jpg`);
 
   const handleKey = (
     e: React.KeyboardEvent<HTMLDivElement>
@@ -138,7 +67,7 @@ const Question = () => {
       document.getElementById('textbox').children;
 
     // 正解のキー押下
-    if (e.key === question.text[position]) {
+    if (e.key === question.en[position]) {
       textSpans[position].classList.add('typed-letters');
       textSpans[position].classList.add('current-letter');
       setPosition(position + 1);
@@ -147,7 +76,7 @@ const Question = () => {
       if (textLength === position + 1) {
         setTimeout(() => {
           setPosition(0);
-          setQuestion(definQuestion());
+          setQuestion(QuestionData);
           const typed = document.querySelectorAll(
             '.typed-letters'
           );
@@ -179,13 +108,13 @@ const Question = () => {
             /> */}
         </div>
         {/* propsのlergeを判定styled-componentに渡してる */}
-        <h2>{question.title}</h2>
+        <h2>{question.jp}</h2>
         <p>
           <div id="textbox">
             <span className="current-letter">
-              {question.text[0].toUpperCase()}
+              {question.en[0].toUpperCase()}
             </span>
-            {question.text
+            {question.en
               .toUpperCase()
               .split('')
               .slice(1)
