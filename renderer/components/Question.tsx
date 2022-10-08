@@ -103,7 +103,7 @@ const Question = () => {
       `}</style>
 
       {/* キー押下イベント発火 */}
-      <div onKeyPress={(e) => handleKey(e)} tabIndex={0}>
+      <div onKeyPress={handleKey} tabIndex={0}>
         <div className="img-wrapp">
           <Image src={imgPath} />
           {/* パッケージングの際にimgタグを使う */}
