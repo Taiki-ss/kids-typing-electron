@@ -3,6 +3,11 @@ import QuestionData from '../store/QuestionData';
 import styled from 'styled-components';
 import Image from 'next/image';
 
+type Question = {
+	jp: string;
+	en: string;
+};
+
 // styled-components --------------------------------------------------
 
 const Component = styled.div`
@@ -55,7 +60,7 @@ const Component = styled.div`
 
 // Questionコンポーネント本体
 const Question = () => {
-  const [question, setQuestion] = useState(QuestionData);
+	const [question, setQuestion]=useState<Question>(QuestionData);
   const [position, setPosition] = useState(0);
   const textLength = question.en.length;
   const imgPath = require(`../img/${question.en}.jpg`);
