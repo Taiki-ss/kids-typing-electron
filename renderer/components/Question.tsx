@@ -60,16 +60,12 @@ const Component = styled.div`
 const Question = () => {
   const [question, setQuestion] = useState<Question>(QuestionData);
   const [position, setPosition] = useState(0);
-  const textLength = question.en.length;
-  const imgPath = require(`../img/${question.en}.jpg`);
+  const textLength: number = question.en.length;
+  const imgPath: string = require(`../img/${question.en}.jpg`);
 
-  const handleKey = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
-    const textSpans = document.getElementById('textbox').children;
-
-    // 正解のキー押下
-    if (e.key === question.en[position]) {
-      textSpans[position].classList.add('typed-letters');
-      textSpans[position].classList.add('current-letter');
+  const handleKey = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (e.key !== question.en[position]) return;
       setPosition(position + 1);
 
       // 最後のキー押下
@@ -77,24 +73,16 @@ const Question = () => {
         setTimeout(() => {
           setPosition(0);
           setQuestion(QuestionData);
-          const typed = document.querySelectorAll('.typed-letters');
-          typed.forEach((el) => {
-            el.classList.remove('typed-letters');
-          });
         }, 1000);
       }
-    }
-  }, []);
+    },
+    [question, position]
+  );
+
+  const chars: string[] = question.en.toUpperCase().split('').slice(0);
 
   return (
     <Component large={textLength === position}>
-      {/* 入力成功したキーのカラー変更用 */}
-      <style jsx>{`
-        .typed-letters {
-          color: #8a2be2;
-        }
-      `}</style>
-
       {/* キー押下イベント発火 */}
       <div onKeyPress={handleKey} tabIndex={0}>
         <div className="img-wrapp">
@@ -109,14 +97,9 @@ const Question = () => {
         <h2>{question.jp}</h2>
         <p>
           <div id="textbox">
-            <span className="current-letter">{question.en[0].toUpperCase()}</span>
-            {question.en
-              .toUpperCase()
-              .split('')
-              .slice(1)
-              .map((char) => (
-                <span className="waiting-letters">{char}</span>
-              ))}
+            {chars.map((char: string, i: number) => (
+              <span style={i < position ? { color: '#8a2be2' } : {}}>{char}</span>
+            ))}
           </div>
         </p>
       </div>
