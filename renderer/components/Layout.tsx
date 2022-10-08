@@ -1,7 +1,7 @@
-import React, { ReactNode } from "react";
-import styled from "styled-components";
-import Link from "next/link";
-import Head from "next/head";
+import React, { ReactNode } from 'react';
+import styled from 'styled-components';
+import Link from 'next/link';
+import Head from 'next/head';
 
 type Props = {
   children: ReactNode;
@@ -14,7 +14,7 @@ const MainContainer = styled.div`
   background-color: #20b2aa;
 `;
 
-const Layout = ({ children, title = "This is the default title" }: Props) => (
+const Layout = ({ children, title = 'This is the default title' }: Props) => (
   <MainContainer>
     <Head>
       <title>{title}</title>

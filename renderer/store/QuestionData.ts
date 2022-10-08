@@ -72,9 +72,6 @@ const QUESTION_DATA: Question[] = [
   { jp: 'ふぇらーり', en: 'fera-ri' },
 ];
 
-const QuestionData = () =>
-  QUESTION_DATA[
-    Math.floor(Math.random() * QUESTION_DATA.length)
-  ];
+const QuestionData = () => QUESTION_DATA[Math.floor(Math.random() * QUESTION_DATA.length)];
 
 export default QuestionData;

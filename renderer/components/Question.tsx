@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import QuestionData from '../store/QuestionData';
 import styled from 'styled-components';
 import Image from 'next/image';
 
 type Question = {
-	jp: string;
-	en: string;
+  jp: string;
+  en: string;
 };
 
 // styled-components --------------------------------------------------
@@ -15,15 +15,13 @@ const Component = styled.div`
   h2 {
     margin: 0 auto;
     position: relative;
-    font-size: ${(props) =>
-      props.large ? '80px' : '60px'};
+    font-size: ${(props) => (props.large ? '80px' : '60px')};
     color: ${(props) => (props.large ? '#fff' : '#fff')};
     font-weight: bold;
     text-align: center;
     transition: all 0.3s;
     &::after {
-      display: ${(props) =>
-        props.large ? 'block' : 'none'};
+      display: ${(props) => (props.large ? 'block' : 'none')};
       content: 'くりあー！';
       position: absolute;
       top: 0;
@@ -60,16 +58,13 @@ const Component = styled.div`
 
 // Questionコンポーネント本体
 const Question = () => {
-	const [question, setQuestion]=useState<Question>(QuestionData);
+  const [question, setQuestion] = useState<Question>(QuestionData);
   const [position, setPosition] = useState(0);
   const textLength = question.en.length;
   const imgPath = require(`../img/${question.en}.jpg`);
 
-  const handleKey = (
-    e: React.KeyboardEvent<HTMLDivElement>
-  ) => {
-    const textSpans =
-      document.getElementById('textbox').children;
+  const handleKey = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+    const textSpans = document.getElementById('textbox').children;
 
     // 正解のキー押下
     if (e.key === question.en[position]) {
@@ -82,16 +77,14 @@ const Question = () => {
         setTimeout(() => {
           setPosition(0);
           setQuestion(QuestionData);
-          const typed = document.querySelectorAll(
-            '.typed-letters'
-          );
+          const typed = document.querySelectorAll('.typed-letters');
           typed.forEach((el) => {
             el.classList.remove('typed-letters');
           });
         }, 1000);
       }
     }
-  };
+  }, []);
 
   return (
     <Component large={textLength === position}>
@@ -116,17 +109,13 @@ const Question = () => {
         <h2>{question.jp}</h2>
         <p>
           <div id="textbox">
-            <span className="current-letter">
-              {question.en[0].toUpperCase()}
-            </span>
+            <span className="current-letter">{question.en[0].toUpperCase()}</span>
             {question.en
               .toUpperCase()
               .split('')
               .slice(1)
               .map((char) => (
-                <span className="waiting-letters">
-                  {char}
-                </span>
+                <span className="waiting-letters">{char}</span>
               ))}
           </div>
         </p>
