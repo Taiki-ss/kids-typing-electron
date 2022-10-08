@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import QuestionData from '../store/QuestionData';
 import styled from 'styled-components';
 import Image from 'next/image';
@@ -79,7 +79,7 @@ const Question = () => {
     [question, position]
   );
 
-  const chars: string[] = question.en.toUpperCase().split('').slice(0);
+  const chars: string[] = useMemo(() => question.en.toUpperCase().split('').slice(0), [question]);
 
   return (
     <Component large={textLength === position}>
