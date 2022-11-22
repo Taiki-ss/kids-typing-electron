@@ -1,14 +1,21 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
+import React, { ReactNode } from 'react';
+import styled from 'styled-components';
+import Link from 'next/link';
+import Head from 'next/head';
 
 type Props = {
-  children: ReactNode
-  title?: string
-}
+  children: ReactNode;
+  title?: string;
+};
+
+const MainContainer = styled.div`
+  min-height: 100vh;
+  height: 100%;
+  background-color: #20b2aa;
+`;
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div>
+  <MainContainer>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -17,24 +24,21 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     <header>
       <nav>
         <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/initial-props">
-          <a>With Initial Props</a>
+          <a>はじめのぺーじ</a>
         </Link>
+        |
+        <Link href="/game">
+          <a>げーむをはじめる</a>
+        </Link>
+        |
       </nav>
     </header>
     {children}
     <footer>
       <hr />
-      <span>I'm here to stay (Footer)</span>
+      <span>footer</span>
     </footer>
-  </div>
-)
+  </MainContainer>
+);
 
-export default Layout
+export default Layout;
