@@ -84,7 +84,7 @@ const Question = () => {
   return (
     <Component large={textLength === position}>
       {/* キー押下イベント発火 */}
-      <div onKeyPress={handleKey} tabIndex={0}>
+      <div onKeyDown={handleKey} tabIndex={0}>
         <div className="img-wrapp">
           <Image src={imgPath} />
           {/* パッケージングの際にimgタグを使う */}
