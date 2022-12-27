@@ -9,9 +9,29 @@ type Props = {
 };
 
 const MainContainer = styled.div`
-  min-height: 100vh;
   height: 100%;
-  background-color: #20b2aa;
+  background-color: #0000AA;
+  font-family: sans-serif;
+  h1 {
+	text-align: center;
+	color: white;
+  }
+  a {
+	display: inline-block;
+	margin: 6px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    background-color: #FF88FF;
+  }
+  footer {
+	background-color: #222;
+	text-align: center;
+	color: white;
+	padding: 24px;
+  }
 `;
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
@@ -24,19 +44,16 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     <header>
       <nav>
         <Link href="/">
-          <a>はじめのぺーじ</a>
+          <a>＜　はじめのぺーじ</a>
         </Link>
-        |
         <Link href="/game">
-          <a>げーむをはじめる</a>
+          <a>げーむをはじめる　＞</a>
         </Link>
-        |
       </nav>
     </header>
     {children}
     <footer>
-      <hr />
-      <span>footer</span>
+      <h2>けんせいのたいぴんぐげーむ</h2>
     </footer>
   </MainContainer>
 );

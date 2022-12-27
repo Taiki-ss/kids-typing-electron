@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useMemo } from 'react';
-import QuestionData from '../store/QuestionData';
+import QuestionData from '../../store/QuestionData';
 import styled from 'styled-components';
 import Image from 'next/image';
 
@@ -12,6 +12,11 @@ type Question = {
 
 const Component = styled.div`
   padding: 32px;
+  .focus {
+    &:focus-visible {
+      outline: none;
+    }
+  }
   h2 {
     margin: 0 auto;
     position: relative;
@@ -61,7 +66,7 @@ const Question = () => {
   const [question, setQuestion] = useState<Question>(QuestionData);
   const [position, setPosition] = useState(0);
   const textLength: number = question.en.length;
-  const imgPath: string = require(`../img/${question.en}.jpg`);
+  const imgPath: string = require(`../../img/${question.en}.jpg`);
 
   const handleKey = useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -84,7 +89,7 @@ const Question = () => {
   return (
     <Component large={textLength === position}>
       {/* キー押下イベント発火 */}
-      <div onKeyDown={handleKey} tabIndex={0}>
+      <div onKeyDown={handleKey} tabIndex={0} className="focus">
         <div className="img-wrapp">
           <Image src={imgPath} />
           {/* パッケージングの際にimgタグを使う */}
