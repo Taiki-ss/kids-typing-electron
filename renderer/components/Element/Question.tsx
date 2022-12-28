@@ -51,7 +51,7 @@ const Component = styled.div`
     justify-content: center;
     width: 80%;
     height: 400px;
-    margin: 0 auto;
+    margin: 100px auto;
     background-color: rgba(0, 0, 0, 0.7);
     img {
       object-fit: contain;

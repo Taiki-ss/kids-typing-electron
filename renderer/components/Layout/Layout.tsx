@@ -9,7 +9,7 @@ type Props = {
 };
 
 const MainContainer = styled.div`
-  height: 100%;
+  height: 100vh;
   background-color: #0000AA;
   font-family: sans-serif;
   h1 {
@@ -26,11 +26,19 @@ const MainContainer = styled.div`
     color: white;
     background-color: #FF88FF;
   }
+  header {
+	position:absolute;
+	top: 0;
+	padding: 24px 0;
+  }
   footer {
+	position:absolute;
+	bottom: 0;
+	width: 100%;
 	background-color: #222;
 	text-align: center;
 	color: white;
-	padding: 24px;
+	padding: 24px 0;
   }
 `;
 
