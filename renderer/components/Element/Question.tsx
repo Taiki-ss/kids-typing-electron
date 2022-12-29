@@ -12,6 +12,22 @@ type Question = {
 
 const Component = styled.div`
   padding: 32px;
+  .answerCount {
+    padding: 24px;
+    position: absolute;
+    top: 3%;
+    right: 10%;
+    font-size: 2rem;
+    color: white;
+    span {
+      font-size: 3rem;
+      background-color: white;
+      color: blue;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 50%;
+    }
+  }
   .focus {
     &:focus-visible {
       outline: none;
@@ -65,6 +81,7 @@ const Component = styled.div`
 const Question = () => {
   const [question, setQuestion] = useState<Question>(QuestionData);
   const [position, setPosition] = useState(0);
+  const [answerCount, seetAnswerCount] = useState(0);
   const textLength: number = question.en.length;
   const imgPath: string = require(`../../img/${question.en}.jpg`);
 
@@ -78,6 +95,7 @@ const Question = () => {
         setTimeout(() => {
           setPosition(0);
           setQuestion(QuestionData);
+          seetAnswerCount(answerCount + 1);
         }, 1000);
       }
     },
@@ -88,6 +106,9 @@ const Question = () => {
 
   return (
     <Component large={textLength === position}>
+      <div className="answerCount">
+        <span>{answerCount}</span>こくりあー！
+      </div>
       {/* キー押下イベント発火 */}
       <div onKeyDown={handleKey} tabIndex={0} className="focus">
         <div className="img-wrapp">
