@@ -10,8 +10,12 @@ type Question = {
 
 // styled-components --------------------------------------------------
 
-const Component = styled.div`
-  padding: 32px;
+const Component=styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  padding-top: 32px;
   .answerCount {
     padding: 24px;
     position: absolute;
@@ -20,12 +24,10 @@ const Component = styled.div`
     font-size: 2rem;
     color: white;
     span {
-      font-size: 3rem;
-      background-color: white;
-      color: blue;
+		padding-right: 8px;
+      font-size: 4rem;
+      color: #ba0000;
       font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 50%;
     }
   }
   .focus {
@@ -43,22 +45,25 @@ const Component = styled.div`
     transition: all 0.3s;
     &::after {
       display: ${(props) => (props.large ? 'block' : 'none')};
-      content: 'くりあー！';
+      content: 'GREAT！';
       position: absolute;
       top: 0;
       left: 50%;
       z-index: 1;
       font-size: 40px;
-      color: red;
+      color: #ba0000;
       transform: translate(-50%, -50%);
       transition: all 0.3s;
     }
   }
   p {
+	width: 80%;
+	margin: 24px auto;
     text-align: center;
     font-size: 60px;
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.7);
+	letter-spacing: 8px;
+    background: linear-gradient(90deg,#acacac,#343434);
     color: #fff;
     border-radius: 48px;
   }
@@ -107,7 +112,7 @@ const Question = () => {
   return (
     <Component large={textLength === position}>
       <div className="answerCount">
-        <span>{answerCount}</span>こくりあー！
+        <span>{answerCount}</span>CLEAR！
       </div>
       {/* キー押下イベント発火 */}
       <div onKeyDown={handleKey} tabIndex={0} className="focus">
@@ -124,7 +129,7 @@ const Question = () => {
         <p>
           <div id="textbox">
             {chars.map((char: string, i: number) => (
-              <span style={i < position ? { color: '#8a2be2' } : {}}>{char}</span>
+              <span style={i < position ? { color: '#ba0000' } : {}}>{char}</span>
             ))}
           </div>
         </p>
