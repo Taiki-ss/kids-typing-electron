@@ -51,12 +51,12 @@ const MainContainer = styled.div`
     background: linear-gradient(180deg, #5c5c5c, #121212);
     text-align: center;
     color: white;
-    padding: 24px 0;
+    padding: 8px 0;
     h2 {
       font-size: 1rem;
       letter-spacing: 6px;
       .kensei {
-        font-size: .5rem;
+        font-size: 0.5rem;
         letter-spacing: 10px;
       }
       .i-text {
@@ -68,7 +68,8 @@ const MainContainer = styled.div`
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
   <MainContainer>
-    <Image src={backgroundImage} className="background-image" />
+    {/* <Image src={backgroundImage} className="background-image" /> */}
+    <img src="Users/taiki/Dev/kids-typing/renderer/img/bg-planet.jpg" className='background-image' alt="" />
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -77,10 +78,10 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     <header>
       <nav>
         <Link href="/">
-          <a>＜　はじめのぺーじ</a>
+          <a>＜ はじめのぺーじ</a>
         </Link>
         <Link href="/game">
-          <a>げーむをはじめる　＞</a>
+          <a>げーむをはじめる ＞</a>
         </Link>
       </nav>
     </header>

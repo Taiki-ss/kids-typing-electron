@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useMemo } from 'react';
+// import Image from 'next/image';
 import QuestionData from '../../store/QuestionData';
 import styled from 'styled-components';
-import Image from 'next/image';
 
 type Question = {
   jp: string;
@@ -10,7 +10,7 @@ type Question = {
 
 // styled-components --------------------------------------------------
 
-const Component=styled.div`
+const Component = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -24,7 +24,7 @@ const Component=styled.div`
     font-size: 2rem;
     color: white;
     span {
-		padding-right: 8px;
+      padding-right: 8px;
       font-size: 4rem;
       color: #ba0000;
       font-weight: bold;
@@ -57,13 +57,13 @@ const Component=styled.div`
     }
   }
   p {
-	width: 80%;
-	margin: 24px auto;
+    width: 80%;
+    margin: 24px auto;
     text-align: center;
     font-size: 60px;
     font-weight: bold;
-	letter-spacing: 8px;
-    background: linear-gradient(90deg,#acacac,#343434);
+    letter-spacing: 8px;
+    background: linear-gradient(90deg, #acacac, #343434);
     color: #fff;
     border-radius: 48px;
   }
@@ -88,7 +88,7 @@ const Question = () => {
   const [position, setPosition] = useState(0);
   const [answerCount, seetAnswerCount] = useState(0);
   const textLength: number = question.en.length;
-  const imgPath: string = require(`../../img/${question.en}.jpg`);
+  //   const imgPath: string = require(`../../img/${question.en}.jpg`);
 
   const handleKey = useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -117,19 +117,18 @@ const Question = () => {
       {/* キー押下イベント発火 */}
       <div onKeyDown={handleKey} tabIndex={0} className="focus">
         <div className="img-wrapp">
-          <Image src={imgPath} />
+          {/* <Image src={imgPath} /> */}
           {/* パッケージングの際にimgタグを使う */}
-          {/* <img
-              src={`file:///home/zorinos/typing-img/${question.text}.jpg`}
-              alt=""
-            /> */}
+          <img src={`/Users/taiki/Dev/kids-typing/renderer/img/${question.en}.jpg`} alt="" />
         </div>
         {/* propsのlergeを判定styled-componentに渡してる */}
         <h2>{question.jp}</h2>
         <p>
           <div id="textbox">
             {chars.map((char: string, i: number) => (
-              <span style={i < position ? { color: '#ba0000' } : {}}>{char}</span>
+              <span key={i} style={i < position ? { color: '#ba0000' } : {}}>
+                {char}
+              </span>
             ))}
           </div>
         </p>
